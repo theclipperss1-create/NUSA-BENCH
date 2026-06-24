@@ -1,101 +1,100 @@
-# 🇮🇩 NUSA-BENCH — Platform Kustom Agensi IT Premium (Full-Stack)
+# 🇮🇩 NUSA-BENCH — Premium Custom IT Agency Platform & Cognitive Benchmark
 
 [![React Version](https://img.shields.io/badge/React-19.2-blue.svg?logo=react&logoColor=white)](https://react.dev)
 [![Vite Bundler](https://img.shields.io/badge/Vite-8.0-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Express Backend](https://img.shields.io/badge/Express-4.21-green.svg?logo=express&logoColor=white)](https://expressjs.com)
 [![Supabase DB](https://img.shields.io/badge/Supabase-Enabled-3ECF8E.svg?logo=supabase&logoColor=white)](https://supabase.com)
-[![Security Audited](https://img.shields.io/badge/Security-Helmet%20%26%20Rate%20Limit-red.svg?logo=auth0&logoColor=white)](#-prioritas-keamanan-security-first)
+[![Security Audited](https://img.shields.io/badge/Security-Helmet%20%26%20Rate%20Limit-red.svg?logo=auth0&logoColor=white)](#-security-first-architecture)
 
-**NUSA-BENCH** adalah platform kustom full-stack premium yang dirancang khusus untuk agensi pengembangan software kelas atas. Platform ini menggabungkan antarmuka **Bento Grid** modern, **Kalkulator Estimasi Proyek** interaktif, **Form Pemesanan Layanan** terintegrasi, serta **Papan Peringkat Kognitif Nasional** untuk menguji ketangkasan mental pengguna (benchmark otak) dengan visualisasi data real-time.
-
----
-
-## 🎨 Keunggulan Desain & Pengalaman Pengguna (UI/UX)
-
-*   **Bento Grid Layout:** Menggunakan tata letak bento grid responsif yang modern untuk memetakan kategori layanan agensi.
-*   **Tipografi Berkarakter:** Menghindari font standar browser dengan mengintegrasikan font premium yang berkarakter kuat dan profesional.
-*   **Aksen Liquid Glassmorphism:** Kombinasi `backdrop-blur` premium dengan batas border transparan halus (`border-white/10`) memberikan efek visual kedalaman yang mewah.
-*   **Tanpa AI Slop (Bebas Klise):** Tidak menggunakan visual generik murahan atau copywriting klise AI. Semua konten, interaksi, dan tata letak dirancang presisi dengan skema warna HSL yang harmonis.
-*   **Mikro-Animasi Responsif:** Setiap tombol, input, dan panel didukung oleh transisi transisi halus berbasis kurva fisika (*spring physics*) untuk interaksi yang terasa hidup.
+**NUSA-BENCH** is a premium, full-stack custom platform designed specifically for high-end software development agencies. It seamlessly integrates a modern **Bento Grid** interface, an interactive **Project Estimation Calculator**, an integrated **Service Booking Form**, and a **National Cognitive Leaderboard** (brain benchmark) featuring real-time data visualization.
 
 ---
 
-## 🔒 Prioritas Keamanan (Security-First)
+## 🎨 Design Aesthetics & User Experience (UI/UX)
 
-Untuk portofolio produksi ini, keamanan diimplementasikan secara berlapis dari sisi server hingga client untuk mencegah eksploitasi:
-
-1.  **Proteksi Header Keamanan (Helmet):** Mengintegrasikan `helmet` middleware pada Express untuk menyetel berbagai header HTTP keamanan (XSS Protection, Content Security Policy, Clickjacking protection, dll.).
-2.  **Pencegahan DDoS & Bruteforce (Rate Limiter):** Membatasi frekuensi request dari IP yang sama secara dinamis menggunakan `express-rate-limit` (maksimum 200 request per 15 menit).
-3.  **Sanitasi & Validasi Input Ketat (Zod):** Semua payload input seperti pendaftaran, pembaruan profil, dan pengiriman skor divalidasi dengan skema Zod di sisi backend:
-    *   *Username validation:* Hanya mengizinkan karakter alfanumerik, garis bawah, dan tanda hubung (`^[a-zA-Z0-9_-]+$`) untuk mencegah Stored XSS payload.
-    *   *Score bounds check:* Membatasi nilai skor masuk hanya berupa angka positif rasional untuk mencegah manipulasi data leaderboard.
-4.  **CORS Aman:** Konfigurasi Cross-Origin Resource Sharing yang dinamis hanya memperbolehkan akses origin terdaftar (misalnya frontend client lokal di port 5173/5174 atau URL produksi yang dikonfigurasi melalui `.env`).
-5.  **Isolasi Kunci Kredensial:** Seluruh kredensial sensitif seperti *Supabase Service Role Key* dan *Database Connection String* diisolasi penuh di file `.env` lokal dan secara otomatis dikecualikan dari Git melalui `.gitignore`.
+*   **Bento Grid Layout:** Implements a sleek, responsive Bento Grid to map out various agency services elegantly.
+*   **Distinctive Typography:** Features Outfit and modern Sans-Serif font pairs, avoiding generic browser defaults.
+*   **Liquid Glassmorphism:** Subtle `backdrop-blur` mixed with 1px transparent borders (`border-white/10`) to provide high-end visual depth.
+*   **Anti-AI Slop (No Clichés):** Completely free from generic stock visuals and AI copywriting buzzwords. Every interaction is calculated, utilizing HSL color tokens.
+*   **Spring Physics Micro-Animations:** Every button, input field, and modal is driven by fluid transition curves (default `stiffness: 100, damping: 20`) for a responsive, tactile feel.
 
 ---
 
-## 📂 Arsitektur Folder Proyek
+## 🔒 Security-First Architecture
+
+Engineered with production-grade security measures across the entire stack:
+
+1.  **Secure HTTP Headers (Helmet):** Integrates the `helmet` middleware on the Express server to set essential secure HTTP response headers (preventing XSS, Clickjacking, and MIME-sniffing).
+2.  **API Abuse Prevention (Rate Limiter):** Protects endpoints from brute-force and DDoS attempts using `express-rate-limit` (capped at 200 requests per 15 minutes per IP).
+3.  **Strict Input Validation (Zod):** Payloads (signups, profiles, scores) are validated on the backend:
+    *   *Username constraints:* Only alphanumeric characters, underscores, and hyphens (`^[a-zA-Z0-9_-]+$`) are allowed, preventing Stored XSS.
+    *   *Score sanitization:* Rejects arbitrary or irrational values on the leaderboard submit route.
+4.  **Secure CORS Policy:** Restricts cross-origin resource sharing to specified URLs via the `CLIENT_URL` environment variable.
+5.  **Credential Isolation:** Avoids hardcoded secrets. All sensitive keys (Supabase Service Role Key, Database Connection String) are stored in `.env` and excluded from Git commits via `.gitignore`.
+
+---
+
+## 📂 Project Architecture
 
 ```
 NUSA-BENCH/
-├── frontend/                 # Aplikasi Antarmuka (Vite + React 19)
+├── frontend/                 # Client SPA (Vite + React 19)
 │   ├── src/
-│   │   ├── components/       # Komponen modular (BentoServices, Estimator, Navbar, Modal)
-│   │   ├── context/          # State management global (Auth & Proyek)
-│   │   ├── services/         # Pemanggilan API Axios menuju Backend
-│   │   ├── pages/            # Halaman utama (Dashboard, Leaderboard, Login, Profile)
-│   │   └── index.css         # Desain sistem token CSS & variabel HSL
+│   │   ├── components/       # BentoServices, Estimator, Navbar, Onboarding Modal
+│   │   ├── context/          # Global Auth & Project State
+│   │   ├── services/         # Axios API Services
+│   │   ├── pages/            # Dashboard, Leaderboard, Login, Profile Pages
+│   │   └── index.css         # CSS Design Tokens & HSL Variables
 │   └── package.json
 │
-├── backend/                  # Server Logika API (Node.js + Express)
-│   ├── config/               # Inisialisasi Supabase (Simulasi DB & Real DB mode)
-│   ├── controllers/          # Logika bisnis (Score & Profile controller)
-│   ├── middleware/           # Proteksi rute (Auth JWT Guard)
-│   ├── data/                 # Folder basis data simulasi lokal (db.json)
-│   ├── routes/               # Handler router API v1
-│   ├── app.js                # Konfigurasi middleware utama Express
+├── backend/                  # Server API (Node.js + Express)
+│   ├── config/               # Supabase & Local Simulated DB Handlers
+│   ├── controllers/          # Score & Profile Business Logic
+│   ├── middleware/           # Auth JWT Guard
+│   ├── data/                 # Local JSON Database storage (db.json)
+│   ├── routes/               # API v1 Router Handlers
+│   ├── app.js                # Express Application Configuration
 │   └── package.json
 │
-├── .env.example              # Template variabel lingkungan untuk kolaborator
-└── .gitignore                # Pengecualian file sensitif secara rekursif (.env, .antigravity, dll.)
+├── .env.example              # Env template for developers
+└── .gitignore                # Recursive Git exclusions (.env, .antigravity, etc.)
 ```
 
 ---
 
-## ⚡ Cara Menjalankan Secara Lokal
+## ⚡ Local Development Setup
 
-### Prasyarat
-*   Node.js (versi 18 ke atas disarankan)
+### Prerequisites
+*   Node.js (v18 or above recommended)
 *   NPM / Yarn
 
-### Langkah 1: Setup Environment (.env)
-Salin berkas `.env.example` menjadi `.env` di direktori utama:
+### Step 1: Set Up Environment Variables (.env)
+Copy the example environment template to `.env` at the root directory:
 ```bash
 cp .env.example .env
 ```
-Secara default, `USE_LOCAL_DB=true` aktif. Ini akan menggunakan simulasi basis data lokal berbasis berkas JSON (`backend/data/db.json`) sehingga Anda tidak membutuhkan Supabase eksternal untuk langsung mencobanya secara lokal!
+By default, `USE_LOCAL_DB=true` is enabled. This triggers the local JSON database simulation (`backend/data/db.json`), allowing you to test the app out-of-the-box without setting up an external database.
 
-### Langkah 2: Jalankan Backend (API Port 5000)
+### Step 2: Start the Backend Server (API Port 5000)
 ```bash
 cd backend
 npm install
 npm run dev
 ```
-Server backend akan menyala di: **`http://localhost:5000`**
+The backend server runs on: **`http://localhost:5000`**
 
-### Langkah 3: Jalankan Frontend (Vite Port 5173)
-Buka terminal baru:
+### Step 3: Start the Frontend Application (Vite Port 5173)
+Open a new terminal:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-Aplikasi frontend akan berjalan di: **`http://localhost:5173`**
+Open your browser and navigate to: **`http://localhost:5173`**
 
 ---
 
-## 🛠️ Keputusan Teknologi & Desain Sistem
+## ☁️ Live Production URLs
 
-*   **Penyimpanan Hibrida:** Mendukung mode lokal tanpa server database untuk kemudahan demonstrasi portofolio, namun siap dialihkan ke Supabase Postgres real hanya dengan mengubah bendera environment.
-*   **Autentikasi Aman:** Sesi aman didukung oleh otentikasi JWT terproteksi. Rute profil dan skor dibatasi ketat menggunakan JWT Guard Middleware.
-*   **Desain Kontemporer:** Dibangun menggunakan warna HSL kustom yang berani, dipadukan dengan tipografi deterministik modern dan transisi animasi fluid menggunakan Framer Motion.
+*   **Frontend Client:** [https://frontend-beta-six-5imx5jr7p4.vercel.app](https://frontend-beta-six-5imx5jr7p4.vercel.app)
+*   **Backend API Server:** [https://backend-xi-virid-44.vercel.app](https://backend-xi-virid-44.vercel.app)
