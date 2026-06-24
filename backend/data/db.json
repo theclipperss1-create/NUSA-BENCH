@@ -1,0 +1,36 @@
+{
+  "profiles": [
+    {
+      "id": "cli_demo123",
+      "username": "player_one",
+      "full_name": "Player Satu",
+      "email": "player@nusabench.id",
+      "level": 1,
+      "xp": 0,
+      "avatar": "🎮",
+      "created_at": "2026-06-24T09:20:00.000Z",
+      "updated_at": "2026-06-24T09:20:00.000Z"
+    },
+    {
+      "id": "61b84133-693c-48c2-97d5-778823a18f56",
+      "username": "ksatria_nusantara",
+      "full_name": "Ksatria Nusantara",
+      "email": "ksatria@nusabench.id",
+      "level": 1,
+      "xp": 0,
+      "avatar": "🧠",
+      "created_at": "2026-06-24T09:19:47.486Z",
+      "updated_at": "2026-06-24T09:19:58.085Z"
+    }
+  ],
+  "scores": [
+    {
+      "id": "score_demo1",
+      "user_id": "cli_demo123",
+      "game_type": "reaction_time",
+      "score_value": 200,
+      "additional_data": {},
+      "created_at": "2026-06-24T09:20:00.000Z"
+    }
+  ]
+}

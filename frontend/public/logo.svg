@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="hsl(263, 90%, 55%)" />
+      <stop offset="100%" stop-color="hsl(190, 95%, 45%)" />
+    </linearGradient>
+  </defs>
+  <polyline points="4 17 10 11 4 5" stroke="url(#logo-gradient)" />
+  <line x1="12" y1="19" x2="20" y2="19" stroke="url(#logo-gradient)" />
+</svg>

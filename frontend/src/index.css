@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;800&family=Outfit:wght@700;800;900&display=swap');
+
+:root {
+  /* Neo-Brutalist Color Palette (NO PURPLE) */
+  --bg-page: hsl(48, 20%, 97%); /* Warm sand / soft beige */
+  --bg-card: hsl(0, 0%, 100%); /* Crisp white */
+  --primary: hsl(14, 95%, 53%); /* Vibrant red-orange (NUSA-BENCH primary) */
+  --primary-hover: hsl(14, 95%, 48%);
+  --secondary: hsl(188, 90%, 40%); /* Rich tropical teal */
+  --secondary-hover: hsl(188, 90%, 35%);
+  --accent-yellow: hsl(50, 100%, 54%); /* Pop yellow */
+  --accent-green: hsl(142, 70%, 45%); /* Success green */
+  --accent-red: hsl(346, 80%, 50%); /* Error red */
+  --accent-beige: hsl(48, 15%, 90%);
+  
+  --text-dark: hsl(240, 10%, 4%); /* Charcoal / Black border */
+  --text-muted: hsl(240, 5%, 35%);
+  
+  --border-color: hsl(240, 10%, 4%);
+  --border-width: 3px;
+  --shadow-color: hsl(240, 10%, 4%);
+  
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+  
+  /* Corner radius - Brutalist prefers slightly rounded but structured */
+  --radius-lg: 14px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
+  
+  --container-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Satisfying dot grid background - "Rame tapi tetap enak dilihat" */
+  background-image: 
+    radial-gradient(rgba(12, 10, 9, 0.08) 2px, transparent 2px), 
+    radial-gradient(rgba(12, 10, 9, 0.08) 2px, var(--bg-page) 2px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+  border-left: var(--border-width) solid var(--border-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-yellow);
+  border: var(--border-width) solid var(--border-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Neo-Brutalist Panel / Card */
+.glass-panel {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: 6px 6px 0px 0px var(--shadow-color);
+  transform: translate(0, 0);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-panel:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px 0px var(--shadow-color);
+  background: var(--bg-card);
+}
+
+/* Buttons - Brutalist pressing effect with spring dynamics */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--border-color) !important;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  box-shadow: 4px 4px 0px 0px var(--shadow-color);
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
+  color: var(--text-dark);
+}
+
+.btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px 0px var(--shadow-color);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px 0px var(--shadow-color);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-page);
+}
+
+.btn-accent {
+  background: var(--secondary);
+  color: #ffffff;
+}
+
+.btn-accent:hover {
+  background: var(--secondary-hover);
+}
+
+/* Sticker-like Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0px 0px var(--shadow-color);
+}
+
+.badge-secondary {
+  background: #ffffff;
+  color: var(--text-dark);
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0px 0px var(--shadow-color);
+}
+
+/* Form Fields - Neo-Brutalist inputs */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.form-input, .form-textarea, .form-select {
+  background: #ffffff;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  width: 100%;
+  box-shadow: 3px 3px 0px 0px var(--shadow-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px 0px var(--shadow-color);
+  border-color: var(--border-color);
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: hsl(240, 5%, 55%);
+  font-weight: 400;
+}
+
+/* Brutalist Table Styling */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 5px 5px 0px 0px var(--shadow-color);
+}
+
+th {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 18px;
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+td {
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 600;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Footer styling */
+footer {
+  margin-top: auto;
+  padding: 32px 0;
+  border-top: var(--border-width) solid var(--border-color);
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 -4px 0px 0px var(--shadow-color);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   Neo-Brutalist Goey Toast Overrides
+   ========================================================================== */
+.gooey-wrapper {
+  font-family: var(--font-sans) !important;
+}
+
+.gooey-blobSvg {
+  filter: drop-shadow(4px 4px 0px var(--shadow-color)) !important;
+}
+
+.gooey-blobSvg path {
+  stroke: var(--border-color) !important;
+  stroke-width: 2.5px !important;
+}
+
+/* Success toast styling */
+.gooey-wrapper:has(.gooey-titleSuccess) .gooey-blobSvg path {
+  fill: var(--accent-green) !important;
+}
+.gooey-wrapper:has(.gooey-titleSuccess) .gooey-titleSuccess {
+  color: #ffffff !important;
+}
+.gooey-wrapper:has(.gooey-titleSuccess) .gooey-description {
+  color: #ffffff !important;
+  font-weight: 650 !important;
+}
+
+/* Error toast styling */
+.gooey-wrapper:has(.gooey-titleError) .gooey-blobSvg path {
+  fill: var(--accent-red) !important;
+}
+.gooey-wrapper:has(.gooey-titleError) .gooey-titleError {
+  color: #ffffff !important;
+}
+.gooey-wrapper:has(.gooey-titleError) .gooey-description {
+  color: #ffffff !important;
+  font-weight: 650 !important;
+}
+
+/* Warning toast styling */
+.gooey-wrapper:has(.gooey-titleWarning) .gooey-blobSvg path {
+  fill: var(--accent-yellow) !important;
+}
+.gooey-wrapper:has(.gooey-titleWarning) .gooey-titleWarning {
+  color: var(--text-dark) !important;
+}
+.gooey-wrapper:has(.gooey-titleWarning) .gooey-description {
+  color: var(--text-dark) !important;
+  font-weight: 650 !important;
+}
+
+/* Info toast styling */
+.gooey-wrapper:has(.gooey-titleInfo) .gooey-blobSvg path {
+  fill: var(--secondary) !important;
+}
+.gooey-wrapper:has(.gooey-titleInfo) .gooey-titleInfo {
+  color: #ffffff !important;
+}
+.gooey-wrapper:has(.gooey-titleInfo) .gooey-description {
+  color: #ffffff !important;
+  font-weight: 650 !important;
+}
+
+/* Default / Loading toast styling */
+.gooey-wrapper:has(.gooey-titleDefault) .gooey-blobSvg path,
+.gooey-wrapper:has(.gooey-titleLoading) .gooey-blobSvg path {
+  fill: #ffffff !important;
+}
+.gooey-wrapper:has(.gooey-titleDefault) .gooey-titleDefault,
+.gooey-wrapper:has(.gooey-titleLoading) .gooey-titleLoading {
+  color: var(--text-dark) !important;
+}
+.gooey-wrapper:has(.gooey-titleDefault) .gooey-description,
+.gooey-wrapper:has(.gooey-titleLoading) .gooey-description {
+  color: var(--text-muted) !important;
+  font-weight: 600 !important;
+}
+
+/* Timestamp text */
+.gooey-timestamp {
+  color: inherit !important;
+  opacity: 0.8 !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+}
+
+/* Title text structure */
+.gooey-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Close button custom styling */
+.gooey-closeButton {
+  background: #ffffff !important;
+  border: 2px solid var(--border-color) !important;
+  box-shadow: 2px 2px 0px var(--shadow-color) !important;
+  color: var(--text-dark) !important;
+  opacity: 0;
+  pointer-events: none;
+}
+.gooey-wrapper:hover .gooey-closeButton {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Action button customization */
+.gooey-actionButton {
+  background: #ffffff !important;
+  border: 2px solid var(--border-color) !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--text-dark) !important;
+  box-shadow: 2px 2px 0px var(--shadow-color) !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+.gooey-actionButton:hover {
+  transform: translate(-1.5px, -1.5px) !important;
+  box-shadow: 3.5px 3.5px 0px var(--shadow-color) !important;
+  background: var(--bg-page) !important;
+}
+.gooey-actionButton:active {
+  transform: translate(1.5px, 1.5px) !important;
+  box-shadow: 0.5px 0.5px 0px var(--shadow-color) !important;
+}
+
+/* Progress bar customization */
+.gooey-progressWrapper {
+  background: rgba(12, 10, 9, 0.15) !important;
+  height: 4px !important;
+  border-radius: 999px !important;
+}
+.gooey-progressBar {
+  background: var(--border-color) !important;
+}
